@@ -1,0 +1,52 @@
+   
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Muebles</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
+                                <table  id="dataTable" width="100%" cellspacing="0">  
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {{#each enseres}}
+                                        
+                                        <tr>
+                                            <td>{{mueblesNombre}}</td>
+                                            <td>{{mueblesDescripcion}}</td>
+                                            <td><a href="/enseres/edit/{{id}}" class="btn btn-primary btn-circle btn-sm">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            
+            <!-- End of Main Content -->

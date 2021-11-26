@@ -1,0 +1,80 @@
+   
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+                    <!-- Formulario -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Editar Muebles</h6>
+                        </div>
+                        <div class="card-body">
+                            
+                            <form class="user" action="/enseres/update/{{enser.id}}" method="POST">
+                                <div class="mb-3">
+                                    <label for="mueblesNombre" class="form-label">Nombre</label>
+                                    <input id="mueblesNombre" type="text" name="mueblesNombre" class="form-control" placeholder="Nombre" value="{{enser.mueblesNombre}}" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mueblesDescripcion" class="form-label">Descripción</label>
+                                    <textarea rows="2" name="mueblesDescripcion" class="form-control" placeholder="Descripción">{{enser.mueblesDescripcion}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mueblesImagen" class="form-label">Imangen</label>
+                                    <input type="text" name="mueblesImagen" class="form-control" placeholder="Imagen" value="{{enser.mueblesImagen}}">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-icon-split ">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">Salvar</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    <!-- DataTales Example -->
+                    <!-- History grid -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table  id="dataTable" width="100%" cellspacing="0">  
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Descripción</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Descripción</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {{#each historia}}
+                                        
+                                        <tr>
+                                            <td>{{ historiaFecha }}</td>
+                                            <td>{{historiadescripcion}}</td>
+                                            <td><a href="{{id}}" class="btn btn-primary btn-circle btn-sm">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- History grid -->
+
+                    </div>
+                <!-- /.container-fluid -->
+
+                </div>
+            <!-- End of Main Content -->
