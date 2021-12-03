@@ -1,49 +1,111 @@
    
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-
-                    <!-- Formulario -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Editar Muebles</h6>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                            <img src="/storage/imgs/{{enser.mueblesImagen}}"class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-5">
+                        <div class="col-lg-6">
+                            <h5 class="card-title">Editar Muebles</h5>
                         </div>
                         <div class="card-body">
                             
-                            <form class="user" action="/enseres/update/{{enser.id}}" method="POST">
-                                <div class="mb-3">
-                                    <label for="mueblesNombre" class="form-label">Nombre</label>
-                                    <input id="mueblesNombre" type="text" name="mueblesNombre" class="form-control" placeholder="Nombre" value="{{enser.mueblesNombre}}" autofocus>
+                            <form class="user" action="/enseres/update/{{enser.id}}" method="POST" enctype="multipart/form-data" width="75" height="75" >
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <input id="mueblesNombre" type="text" name="mueblesNombre" class="form-control" placeholder="Nombre" value="{{enser.mueblesNombre}}" autofocus required>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="mueblesDescripcion" class="form-label">Descripción</label>
-                                    <textarea rows="2" name="mueblesDescripcion" class="form-control" placeholder="Descripción">{{enser.mueblesDescripcion}}</textarea>
+                                <div class="row mb-3">
+                                    <label for="mueblesDescripcion" class="col-sm-2 col-form-label">Descripción</label>
+                                    <div class="col-sm-10">
+                                        <textarea rows="2" name="mueblesDescripcion" class="form-control" placeholder="Descripción" required>{{enser.mueblesDescripcion}}</textarea>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="mueblesImagen" class="form-label">Imangen</label>
-                                    <input type="text" name="mueblesImagen" class="form-control" placeholder="Imagen" value="{{enser.mueblesImagen}}">
+                                <div class="row mb-3">
+                                    <label for="autor" class="col-sm-2 col-form-label">Autor</label>
+                                    <div class="col-sm-10">
+                                        <input id="autor" type="text" name="autor" class="form-control" placeholder="autor" value="{{enser.autor}}">
+                                    </div>
+                                </div>       
+                                <div class="row mb-3">
+                                    <label for="unidadesInicio" class="col-sm-2 col-form-label">Unidades inicial</label>
+                                    <div class="col-sm-2">
+                                        <input id="unidadesInicio" type="number" name="unidadesInicio" class="form-control" placeholder="unidadesInicio" value="{{enser.unidadesInicio}}">
+                                    </div>
+                                    <label for="unidadesActuales" class="col-sm-2 col-form-label">Unidades actualidad</label>
+                                    <div class="col-sm-2">
+                                        <input id="unidadesActuales" type="number" name="unidadesActuales" class="form-control" placeholder="unidadesActuales" value="{{enser.unidadesActuales}}">
+                                    </div>
+
+                                </div>     
+                                <div class="row mb-3">
+                                </div>    
+                                <div class="row mb-3">
+                                    <label for="materiales" class="col-sm-2 col-form-label">materiales</label>
+                                    <div class="col-sm-10">
+                                        <input id="materiales" type="text" name="materiales" class="form-control" placeholder="materiales" value="{{enser.materiales}}">
+                                    </div>
+                                </div>                         
+                                <div class="row mb-3">
+                                  <label for="mueblesImagen" class="col-sm-2 col-form-label">Imagen</label>
+                                  <div class="col-sm-10">
+                                    <input class="form-control" type="file" id="formFile" name="mueblesImagen">
+                                    <input id="mueblesImagen" type="hidden" name="mueblesImagen" class="form-hiden" placeholder="materiales" value="{{enser.mueblesImagen}}">
+                                  </div>              
                                 </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-icon-split ">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Salvar</span>
-                                    </button>
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary btn-circle btn-sm">Salvar</button>
+                                    <button type="button" class="btn btn-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarMueble">Borrar</button>
+                                    <a href="/enseres" class="btn btn-secondary btn-circle btn-sm">Cancelar</i>
+                          </a>
                                 </div>
                             </form>
+
+                            <div class="modal fade" id="eliminarMueble" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title">Borrar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="modal-body">
+                                  Causas por las que se va a dar de baja
+                                </div>
+                                <form class="user" action="/enseres/delete/{{enser.id}}" method="POST" enctype="multipart/form-data" width="75" height="75" >
+                                  <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <textarea rows="2" name="mueblesDescripcion" class="form-control" placeholder="Descripción" required></textarea>
+                                    </div>
+                                </div>  
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-danger">Guardar</button>
+                                
+                              </div>
+                              </form>
+                            </div>
+
+                          </div>
+
+                        </div>
+                        </div>
                         </div>
                     <!-- DataTales Example -->
                     <!-- History grid -->
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table  id="dataTable" width="100%" cellspacing="0">  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-striped" id="dataTable">  
                                     <thead>
                                         <tr>
-                                            <th>Fecha</th>
-                                            <th>Descripción</th>
-                                            <th>Acción</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Acción</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -57,10 +119,10 @@
                                         {{#each historia}}
                                         
                                         <tr>
-                                            <td>{{ historiaFecha }}</td>
+                                            <td>{{format historiaFecha }}</td>
                                             <td>{{historiadescripcion}}</td>
-                                            <td><a href="{{id}}" class="btn btn-primary btn-circle btn-sm">
-                                                    <i class="fas fa-info-circle"></i>
+                                            <td><a href="/enseres/delHistoria/{{id}}" class="btn btn-primary btn-circle btn-sm">
+                                                <i class="ri-delete-bin-2-fill"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -68,6 +130,41 @@
                                         {{/each}}
                                     </tbody>
                                 </table>
+              <button type="button" class="btn btn-primary btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                añadir historia
+              </button>
+              <form class="user" action="/enseres/addHistoria/{{enser.id}}" method="POST">
+              <div class="modal fade" id="verticalycentered" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Añadir historia</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class="row mb-3">
+                                <label for="historiFecha" class="col-sm-2 col-form-label">Fecha</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" id="historiFecha" name="historiaFecha" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                               <div class="col-sm-10">
+                                    <textarea class="form-control" style="height: 100px" id="historiadescripcion" name="historiadescripcion" required></textarea>
+                                </div>
+                            </div>
+                       
+                      </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </form><!-- End Vertically centered Modal-->
+
                             </div>
                         </div>
                     </div>

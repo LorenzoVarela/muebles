@@ -4,6 +4,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const validator = require('express-validator');
+//const formidable = require('express-formidable');
 const passport = require('passport');
 const flash = require('connect-flash');
 const MySQLStore = require('express-mysql-session')(session);
@@ -43,6 +44,7 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+//app.use(formidable.parse({ keepExtensions: true }));
 //app.use(validator());
 
 // Global variables
@@ -53,11 +55,12 @@ app.use((req, res, next) => {
     next();
 });
 
+
 // Routes
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use(require('./routes/enseres'));
-app.use('/links', require('./routes/links'));
+//app.use('/links', require('./routes/links'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

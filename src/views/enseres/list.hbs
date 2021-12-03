@@ -1,52 +1,39 @@
-   
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
 
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each enseres}}
+                  <tr>
+                      <td>{{mueblesNombre}}</td>
+                      <td>{{mueblesDescripcion}}</td>
+                      <td><a href="/enseres/edit/{{id}}" class="btn btn-primary btn-circle btn-sm">
+                          <i class="ri-ball-pen-fill"></i>
+                          </a>
+                      </td>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Muebles</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-                                <table  id="dataTable" width="100%" cellspacing="0">  
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        {{#each enseres}}
-                                        
-                                        <tr>
-                                            <td>{{mueblesNombre}}</td>
-                                            <td>{{mueblesDescripcion}}</td>
-                                            <td><a href="/enseres/edit/{{id}}" class="btn btn-primary btn-circle btn-sm">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        
-                                        {{/each}}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
 
-                </div>
-                <!-- /.container-fluid -->
+            </div>
+          </div>
 
-            
+        </div>
+      </div>
+    </section>
             <!-- End of Main Content -->
