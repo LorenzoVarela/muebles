@@ -5,13 +5,13 @@
                         <div class="col-md-3">
                             <img src="/storage/imgs/{{enser.mueblesImagen}}"class="img-fluid rounded-start">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-8">
                         <div class="col-lg-6">
                             <h5 class="card-title">Editar Muebles</h5>
                         </div>
                         <div class="card-body">
                             
-                            <form class="user" action="/enseres/update/{{enser.id}}" method="POST" enctype="multipart/form-data" width="75" height="75" >
+                            <form class="user" action="/enseres/update/{{enser.id}}" method="POST" enctype="multipart/form-data" >
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
@@ -48,7 +48,19 @@
                                     <div class="col-sm-10">
                                         <input id="materiales" type="text" name="materiales" class="form-control" placeholder="materiales" value="{{enser.materiales}}">
                                     </div>
+                                </div>          
+                                <div class="row mb-3">
+                                    <label for="muebleAdquision" class="col-sm-2 col-form-label">Metodo de adquisición</label>
+                                    <div class="col-sm-10">
+                                        <input id="muebleAdquision" type="text" name="muebleAdquision" class="form-control" placeholder="Metodo de adquisición" value="{{enser.muebleAdquision}}">
+                                    </div>
                                 </div>                         
+                                <div class="row mb-3">
+                                    <label for="muebleDimensiones" class="col-sm-2 col-form-label">Dimensiones</label>
+                                    <div class="col-sm-10">
+                                        <input id="muebleDimensiones" type="text" name="muebleDimensiones" class="form-control" placeholder="dimensiones" value="{{enser.muebleDimensiones}}">
+                                    </div>
+                                </div>                                                      
                                 <div class="row mb-3">
                                   <label for="mueblesImagen" class="col-sm-2 col-form-label">Imagen</label>
                                   <div class="col-sm-10">

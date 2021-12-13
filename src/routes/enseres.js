@@ -34,7 +34,7 @@ router.get('/enseres/adds/', isLoggedIn, (req, res) => {
 });
 
 router.post('/enseres/add/', isLoggedIn, upload.single('mueblesImagen'), async(req, res) => {
-    var { mueblesNombre, mueblesDescripcion, autor, materiales, unidadesInicio, unidadesActuales } = req.body;
+    var { mueblesNombre, mueblesDescripcion, autor, materiales, unidadesInicio, unidadesActuales, muebleDimensiones, muebleAdquision } = req.body;
     var mueblesImagen = 'ejemplo.jpeg';
     if (typeof req.file !== "undefined") {
         var mueblesImagen = req.file.filename;
@@ -54,25 +54,27 @@ router.post('/enseres/add/', isLoggedIn, upload.single('mueblesImagen'), async(r
         materiales,
         unidadesInicio,
         unidadesActuales,
-        mueblesImagen
+        mueblesImagen,
+        muebleDimensiones,
+        muebleAdquision
     };
 
 
     try {
-        console.log(newsEnser);
         await pool.query('insert into muebles set ?', [newsEnser]);
-        req.flash('success', 'Mueble insert');
+        req.flash('success', 'Se ha insertado el enser');
     } catch (err) {
         console.log(err);
+        req.flash('fail', 'Error al insertar los enseres');
     }
-    console.log(newsEnser);
+
     res.redirect('/enseres/');
 });
 
 router.post('/enseres/update/:id', isLoggedIn, upload.single('mueblesImagen'), async(req, res) => {
     const { id } = req.params;
 
-    var { mueblesNombre, mueblesDescripcion, autor, materiales, unidadesInicio, unidadesActuales, mueblesImagen } = req.body;
+    var { mueblesNombre, mueblesDescripcion, autor, materiales, unidadesInicio, unidadesActuales, mueblesImagen, muebleDimensiones, muebleAdquision } = req.body;
 
 
     if (typeof req.file !== "undefined") {
@@ -92,7 +94,9 @@ router.post('/enseres/update/:id', isLoggedIn, upload.single('mueblesImagen'), a
         autor,
         materiales,
         unidadesInicio,
-        unidadesActuales
+        unidadesActuales,
+        muebleDimensiones,
+        muebleAdquision
     };
 
 
@@ -100,9 +104,10 @@ router.post('/enseres/update/:id', isLoggedIn, upload.single('mueblesImagen'), a
     try {
         console.log({ edEnser });
         await pool.query('UPDATE muebles SET ? WHERE id = ?', [edEnser, id]);
-        req.flash('success', 'Mueble update');
+        req.flash('success', 'Se ha modificado el enser ');
     } catch (err) {
         console.log(err);
+        req.flash('fail', 'Error al modificar el enser');
     }
     res.redirect('/enseres');
 });
@@ -116,6 +121,7 @@ router.get('/enseres/edit/:id', isLoggedIn, async(req, res) => {
         const historia = await pool.query('SELECT * FROM historiaMuebles where muebles_id = ? and historiaActivo = 1 order by historiaFecha', [id]);
         if (!enseres) {
             console.log('Error id no válido');
+            req.flash('fail', 'Error al leer el enser');
         }
         res.render('enseres/edit', { enser: enseres[0], historia });
     } else {
@@ -137,9 +143,10 @@ router.post('/enseres/addHistoria/:id', isLoggedIn, async(req, res) => {
     };
     try {
         await pool.query('insert into historiaMuebles set ?', [newHistoria]);
-        req.flash('success', 'Mueble insert');
+        req.flash('success', 'Cambios en la historia generado');
     } catch (err) {
         console.log(err);
+        req.flash('fail', 'Error al insetar el cambio en la historia');
     }
     res.redirect(`/enseres/edit/${id}`);
 });
@@ -160,6 +167,7 @@ router.get('/enseres/delHistoria/:id', isLoggedIn, async(req, res) => {
         req.flash('success', 'Historia elimianda');
     } catch (err) {
         console.log(err);
+        req.flash('fail', 'Error al borrar una histia en el muble');
     }
 
     res.redirect('/enseres/edit/' + enser);
